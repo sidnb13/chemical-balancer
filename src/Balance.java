@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
@@ -25,14 +26,15 @@ public class Balance {
                 ArrayList<String> s1 = new ArrayList<>(Arrays.asList(side1));
                 ArrayList<String> s2 = new ArrayList<>(Arrays.asList(side2));
                 LinearAlgebra solution = new LinearAlgebra(s1, s2);
-                System.out.println("\nThe balanced equation is:");
+                System.out.println("\nThe balanced equation is:\n");
                 solution.solve();
+
             } else {
                 Date d = new Date();
                 System.out.printf("Logged out at: %tT%n",d);
                 System.out.println();
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | FileNotFoundException e) {
             System.err.println("\nTry again and enter a valid formula. Ensure the progression is \"-->\" not" +
                     " \"--->\" and that extraneous symbols are not included.\n");
         }

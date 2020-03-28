@@ -57,6 +57,11 @@ public class FormulaParser {
         return stack.peek();
     }
 
+    /**
+     * secondary modified algorithm to aid in balancing with polyatomic ions
+     * @param formula a formula
+     * @return a element-frequency map
+     */
     public static LinkedHashMap<String, Integer> parseFormula1(String formula) {
         Pattern p = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))(\\d*)");
         Matcher m = p.matcher(removeCoefficient(formula)); //removes coefficients as input here

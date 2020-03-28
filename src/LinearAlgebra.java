@@ -1,4 +1,6 @@
 import org.apache.commons.math3.linear.*;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -10,19 +12,24 @@ public class LinearAlgebra {
     private ArrayList<String> side1;
     private ArrayList<String> side2;
 
+    /**
+     * the constructor
+     * @param s1 .
+     * @param s2 .
+     */
     public LinearAlgebra (ArrayList<String> s1, ArrayList<String> s2) {
         side1 = s1;
         side2 = s2;
     }
 
     private ArrayList<String> t = new ArrayList<>();
+    private ArrayList<LinkedHashMap<String,Integer>> formulas = new ArrayList<>();
 
     /**
      * @return the matrix to be used
      */
     public double[][] getRawMatrix () {
         t.addAll(side1); t.addAll(side2);
-        ArrayList<LinkedHashMap<String,Integer>> formulas = new ArrayList<>();
         for (String s : t)
             formulas.add(FormulaParser.parseFormula1(s));
         ArrayList<String> arr = new ArrayList<>();
@@ -41,7 +48,12 @@ public class LinearAlgebra {
         return mat;
     }
 
-    public void solve () {
+    /**
+     * Primary method to solve a matrix. Turns a rectangular matrix into a square one and takes leftover component
+     * as the constant vector. Thus, with N coefficients, N-1 solutions would be displayed with the fourth
+     * being det|A| where A is the square matrix
+     */
+    public void solve () throws FileNotFoundException {
         double[][] mat = getRawMatrix();
         int newLength = Math.min(mat.length, mat[0].length);
         double[][] newMat = new double[newLength][newLength];
@@ -81,8 +93,13 @@ public class LinearAlgebra {
                     (i != side1.size()-1 ? (i == t.size()-1 ? "" : " + ") : " --> "));
         }
         System.out.println();
+        PeriodicProperties.showProperties(formulas,t);
     }
 
+    /**
+     * recursive algorithm to simplify answer vector
+     * @param arr is the solution vector
+     */
     public void simplify (ArrayList<Integer> arr) {
         int countEvens = 0;
         for (int i = arr.size()-1; i >= 0; i--)
@@ -102,6 +119,10 @@ public class LinearAlgebra {
         }
     }
 
+    /**
+     * For debugging purposes, printing a matrix
+     * @param mat a matrix
+     */
     public void printMat (double[][] mat) {
         for (double[] doubles : mat) {
             for (int col = 0; col < mat[0].length; col++) {
