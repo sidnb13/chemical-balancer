@@ -89,7 +89,7 @@ public class LinearAlgebra {
         arr.add((int) Math.abs(new LUDecomposition(coefficients).getDeterminant()));
         simplify(arr);
         for (int i = 0; i < t.size(); i++) {
-            System.out.print((arr.get(i) == 1 ? "" : arr.get(i)) +""+t.get(i) +
+            System.err.print((arr.get(i) == 1 ? "" : arr.get(i)) +""+t.get(i) +
                     (i != side1.size()-1 ? (i == t.size()-1 ? "" : " + ") : " --> "));
         }
         System.out.println();
