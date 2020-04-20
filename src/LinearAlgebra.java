@@ -1,5 +1,4 @@
 import org.apache.commons.math3.linear.*;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -89,10 +88,9 @@ public class LinearAlgebra {
         arr.add((int) Math.abs(new LUDecomposition(coefficients).getDeterminant()));
         simplify(arr);
         for (int i = 0; i < t.size(); i++) {
-            System.err.print((arr.get(i) == 1 ? "" : arr.get(i)) +""+t.get(i) +
-                    (i != side1.size()-1 ? (i == t.size()-1 ? "" : " + ") : " --> "));
+            System.out.print((arr.get(i) == 1 ? "" : arr.get(i)) +""+t.get(i) +
+                    (i != side1.size()-1 ? (i == t.size()-1 ? "" : " + ") : " --> ")+(i == t.size() - 1 ? "\n":""));
         }
-        System.out.println();
         PeriodicProperties.showProperties(formulas,t);
     }
 
@@ -112,7 +110,7 @@ public class LinearAlgebra {
         }
         for (int i = 0; i < arr.size(); i++)
             arr.set(i,Math.abs(arr.get(i)));
-        if (countEvens == arr.size() ) {
+        if (countEvens == arr.size()) {
             for (int i = 0; i < arr.size(); i++)
                 arr.set(i,Math.abs(arr.get(i))/2);
             simplify(arr);

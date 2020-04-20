@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class PeriodicProperties {
     public static LinkedHashMap<String,Double> elementMasses = new LinkedHashMap<>();
 
-
     public static void execute () throws FileNotFoundException {
         Scanner in = new Scanner(new File("elements.csv"));
         String[] line;

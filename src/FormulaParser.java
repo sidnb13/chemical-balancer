@@ -16,9 +16,8 @@ public class FormulaParser {
         ArrayList<LinkedHashMap<String,Integer>> arr = new ArrayList<>();
         for (String formula : formulas) arr.add(parseFormula(formula));
         LinkedHashMap<String,Integer> res = new LinkedHashMap<>();
-        for (LinkedHashMap<String,Integer> map : arr) {
+        for (LinkedHashMap<String,Integer> map : arr)
             map.forEach((k, v) -> res.merge(k, v, (key, val) -> v + val));
-        }
         return res;
     }
 
@@ -41,9 +40,8 @@ public class FormulaParser {
             } else if (match.startsWith(")")) {
                 LinkedHashMap<String, Integer> top = stack.pop();
                 mx = match.length() > 1 ? Integer.parseInt(match.substring(1)) : 1;
-                for (String name: top.keySet()) {
+                for (String name: top.keySet())
                     stack.peek().put(name, stack.peek().getOrDefault(name, 0) + top.get(name) * mx);
-                }
             } else {
                 int i = 1;
                 while (i < match.length() && Character.isLowerCase(match.charAt(i))) {
@@ -74,7 +72,6 @@ public class FormulaParser {
             if (match.equals("(")) {
                 stack.push(new LinkedHashMap<>());
             } else if (match.startsWith(")")) {
-                LinkedHashMap<String, Integer> top = stack.pop();
                 mx = match.length() > 1 ? Integer.parseInt(match.substring(1)) : 1;
                 stack.peek().put(formula.substring(formula.indexOf("(")+1,formula.indexOf(")")),mx);
             } else {

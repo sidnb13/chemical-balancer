@@ -14,7 +14,7 @@ public class Balance {
             System.out.println("Wish to continue? [Y/N]");
             String yn = s.nextLine().toUpperCase();
             if (yn.equals("Y")) {
-                String[] sides = equation.split("-->");
+                String[] sides = equation.split("(-->)|(=)|(--->)|(->)");
                 String[] side1 = sides[0].split("\\+");
                 String[] side2 = sides[1].split("\\+");
 
