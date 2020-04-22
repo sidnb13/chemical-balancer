@@ -9,12 +9,12 @@ public class Balance {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         try {
-            System.out.print("Please enter the chemical equation: ");
+            System.out.print("\nPlease enter the chemical equation: ");
             String equation = s.nextLine().replaceAll("\\s", "");
             System.out.println("Wish to continue? [Y/N]");
             String yn = s.nextLine().toUpperCase();
             if (yn.equals("Y")) {
-                String[] sides = equation.split("(-->)|(=)|(--->)|(->)");
+                String[] sides = equation.split("(-->)|(=)|(--->)|(->)|(==>)");
                 String[] side1 = sides[0].split("\\+");
                 String[] side2 = sides[1].split("\\+");
 

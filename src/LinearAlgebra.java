@@ -8,8 +8,8 @@ import java.util.Map;
  * performs the solving of a matrix, determines solutions for coefficients
  */
 public class LinearAlgebra {
-    private ArrayList<String> side1;
-    private ArrayList<String> side2;
+    private final ArrayList<String> side1;
+    private final ArrayList<String> side2;
 
     /**
      * the constructor
@@ -21,8 +21,8 @@ public class LinearAlgebra {
         side2 = s2;
     }
 
-    private ArrayList<String> t = new ArrayList<>();
-    private ArrayList<LinkedHashMap<String,Integer>> formulas = new ArrayList<>();
+    private final ArrayList<String> t = new ArrayList<>();
+    private final ArrayList<LinkedHashMap<String,Integer>> formulas = new ArrayList<>();
 
     /**
      * @return the matrix to be used
@@ -49,7 +49,7 @@ public class LinearAlgebra {
 
     /**
      * Primary method to solve a matrix. Turns a rectangular matrix into a square one and takes leftover component
-     * as the constant vector. Thus, with N coefficients, N-1 solutions would be displayed with the fourth
+     * as the constant vector. Thus, with N coefficients, N-1 solutions would be displayed with the Nth
      * being det|A| where A is the square matrix
      */
     public void solve () throws FileNotFoundException {
@@ -110,7 +110,7 @@ public class LinearAlgebra {
         }
         for (int i = 0; i < arr.size(); i++)
             arr.set(i,Math.abs(arr.get(i)));
-        if (countEvens == arr.size()) {
+        if (countEvens == arr.size() ) {
             for (int i = 0; i < arr.size(); i++)
                 arr.set(i,Math.abs(arr.get(i))/2);
             simplify(arr);
