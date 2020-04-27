@@ -1,6 +1,7 @@
 import org.apache.commons.math3.linear.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class LinearAlgebra {
     public double[][] getRawMatrix () {
         t.addAll(side1); t.addAll(side2);
         for (String s : t)
-            formulas.add(FormulaParser.parseFormula1(s));
+            formulas.add(FormulaParser.parseFormula(s));
         ArrayList<String> arr = new ArrayList<>();
         for (LinkedHashMap<String,Integer> a : formulas) {
             for (Map.Entry<String,Integer> e : a.entrySet())
@@ -56,7 +57,7 @@ public class LinearAlgebra {
         double[][] mat = getRawMatrix();
         int newLength = Math.min(mat.length, mat[0].length);
         double[][] newMat = new double[newLength][newLength];
-        double[] cons = new double[mat.length];
+        double[] cons = new double[newLength];
         for (int row = 0; row < newMat.length; row++) {
             for (int col = 0; col < newMat[0].length; col++) {
                 newMat[row][col] = col > side1.size()-1 ? -mat[row][col] : mat[row][col];
@@ -70,7 +71,7 @@ public class LinearAlgebra {
         }
         if (count == cons.length) {
             for (int i = 0; i < newMat.length; i++) {
-                newMat[i][Math.max(mat.length,mat[0].length)-1] = 1;
+                newMat[i][mat[0].length-1] = 1;
             }
         }
         RealMatrix coefficients = new Array2DRowRealMatrix(newMat,false);

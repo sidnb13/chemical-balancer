@@ -8,18 +8,6 @@ import java.util.regex.Pattern;
  * Class containing relevant methods to deal with chemical formulas
  */
 public class FormulaParser {
-    /**
-     * @param formulas contains the formulas of one side of the equation
-     * @return a map with the merged values of each formula's map
-     */
-    public static LinkedHashMap<String,Integer> getSideAtoms (String[] formulas) {
-        ArrayList<LinkedHashMap<String,Integer>> arr = new ArrayList<>();
-        for (String formula : formulas) arr.add(parseFormula(formula));
-        LinkedHashMap<String,Integer> res = new LinkedHashMap<>();
-        for (LinkedHashMap<String,Integer> map : arr)
-            map.forEach((k, v) -> res.merge(k, v, (key, val) -> v + val));
-        return res;
-    }
 
     /**
      * Uses stack algorithm
