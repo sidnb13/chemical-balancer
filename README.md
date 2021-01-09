@@ -14,4 +14,4 @@ Balanced: `O2 + 2H2 --> H2O`
 
 ## Writeup
 
-See the writeup titled `Chemical_Equations_and_Matrices.pdf` for an example demonstrating the mathematical methods used.
+See `writeup.pdf` for an example demonstrating the mathematical methods used.
